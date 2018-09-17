@@ -2,14 +2,17 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyParse from 'body-parser';
 import routes from './src/routes/createRecipeRoutes';
+import dotenv from 'dotenv-extended';
 
+dotenv.load();
 
 const app = express();
 const PORT = 3000;
 
 // mongoose connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://MaxBar:m19b82tm@ds259742.mlab.com:59742/recipe-web');
+
+mongoose.connect('mongodb://' + process.env.MONGO_USER + ':' + process.env.MONGO_PASS + process.env.MONGO_HOST + '/' + process.env.MONGO_DATABASE);
 
 // bodyparser setup
 app.use(bodyParse.urlencoded({ extended: true}));
@@ -22,20 +25,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(PORT, () => {
-    console.log(`Yout server is running on port ${PORT}`);
+    console.log(`Your server is running on port ${PORT}`);
 });
-
-// const express = require('express');
-// const app = express();
-// const path = require('path');
-
-// let indexRoutes = require('./routes/index');
-// new indexRoutes(app, path);
-// let createRecipeRoute = require('./routes/create-recipe');
-// new createRecipeRoute(app, path);
-
-// app.use(express.static('public'));
-
-// //app.use('/', indexRoute)(app);
-// //app.use('/create-recipe', createRecipeRoute)(app);
-// app.listen(3000, () => console.log('Listening on port 3000'));
