@@ -1,0 +1,23 @@
+{
+  "name": "recipe-website",
+  "version": "0.0.1",
+  "description": "Web site for creating and looking up recipes",
+  "main": "server/app.js",
+  "dependencies": {
+    "express": "^4.16.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaxBar/Recipe-website.git"
+  },
+  "author": "Max Barnell",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MaxBar/Recipe-website/issues"
+  },
+  "homepage": "https://github.com/MaxBar/Recipe-website#readme"
+}
