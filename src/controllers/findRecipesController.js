@@ -15,7 +15,7 @@ export class FindRecipe {
             res.json(recipe);
         });
     }
-
+ 
     static getSpecificRecipe(req, res) {
         Recipe.findById(req.params.recipeId, (err, recipe) => {
             if(err) {
@@ -39,6 +39,25 @@ export class FindRecipe {
                     res.json(recipe);
             });
         }
+    }
+
+    static updateRecipe(req, res) {
+        Recipe.findOneAndUpdate({ _id: req.params.recipeId }, req.body, { new: true }, (err, recipe) => {
+            if(err) {
+                res.send(err);
+            }
+            res.json(recipe);
+            }
+        );
+    }
+
+    static deleteRecipe(req, res) {
+        Recipe.remove({ _id: req.params.recipeId }, (err, recipe) => {
+            if(err) {
+                res.send(err);
+            }
+            res.json({ message: 'Successfully deleted recipe'});
+        });
     }
 
     /* static searchRecipes(req, res) {

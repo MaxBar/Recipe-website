@@ -23,7 +23,8 @@ export const RecipeSchema  = new Schema({
         },
         ingredient: {
             type: String,
-            required: "Write name of ingreddient"
+            required: "Write name of ingreddient",
+            index: true
         }
     }],
     description: {
@@ -35,11 +36,20 @@ export const RecipeSchema  = new Schema({
         value: Number,
         unit: String
     }],
-    author: String,
+    category: {
+        type: String,
+        index: true
+    },
+    author: {
+        type: String,
+        index: true
+    },
     created_date: {
         type: Date,
         default: Date.now
     }
 })
 
-RecipeSchema.index({recipeName: "text", description: "text"});
+RecipeSchema.index({recipeName: "text", description: "text", ingredient: "text"});
+RecipeSchema.index({category: "test"});
+RecipeSchema.index({author: "text"});

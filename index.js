@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 import bodyParse from 'body-parser';
 import createRecipeRoutes from './src/routes/createRecipeRoutes';
 import findRecipeRoutes from './src/routes/findRecipesRoutes';
-import recipeSchema from './src/models/recipeModel';
 import dotenv from 'dotenv-extended';
 
 dotenv.load();
