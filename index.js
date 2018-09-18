@@ -1,7 +1,9 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import bodyParse from 'body-parser';
-import routes from './src/routes/createRecipeRoutes';
+import createRecipeRoutes from './src/routes/createRecipeRoutes';
+import findRecipeRoutes from './src/routes/findRecipesRoutes';
+import recipeSchema from './src/models/recipeModel';
 import dotenv from 'dotenv-extended';
 
 dotenv.load();
@@ -18,7 +20,8 @@ mongoose.connect('mongodb://' + process.env.MONGO_USER + ':' + process.env.MONGO
 app.use(bodyParse.urlencoded({ extended: true}));
 app.use(bodyParse.json());
 
-new routes(app);
+new createRecipeRoutes(app);
+new findRecipeRoutes(app);
 
 app.get('/', (req, res) => {
     res.send(`Node and express server i running on port ${PORT}`);
