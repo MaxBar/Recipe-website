@@ -2,7 +2,6 @@ import mongoose from 'mongoose';
 import { RecipeSchema } from '../models/recipeModel';
 
 const Recipe = mongoose.model('Recipe', RecipeSchema);
-//Recipe.index({recipeName:"text", description:"text"});
 
 export class AddNewRecipe {
     constructor() {

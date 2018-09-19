@@ -9,6 +9,7 @@ dotenv.load();
 
 const app = express();
 const PORT = 3000;
+app.set('view engine', 'ejs');
 
 // mongoose connection
 mongoose.Promise = global.Promise;
@@ -23,8 +24,11 @@ new createRecipeRoutes(app);
 new findRecipeRoutes(app);
 
 app.get('/', (req, res) => {
-    res.send(`Node and express server i running on port ${PORT}`);
+    res.render('index', {
+        content: 'Hello express from <em>EJS</em>'
+    });
 })
+//app.use(express.static('public')); 
 
 app.listen(PORT, () => {
     console.log(`Your server is running on port ${PORT}`);
