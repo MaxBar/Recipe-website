@@ -9,7 +9,7 @@ dotenv.load();
 
 const app = express();
 const PORT = 3000;
-app.set('view engine', 'ejs');
+//app.set('view engine', 'ejs');
 
 // mongoose connection
 mongoose.Promise = global.Promise;

@@ -1,12 +1,12 @@
+body {
+    background-color: bisque !important;
+}
 .jumdotron-custom
 {
     background: url('/images/banner.jpg') 
     no-repeat !important;
     height: 400px;
 }
-/*.nav {
-    padding: 0 200px;
-}*/
 .navbar-custom {
     background-color: darkred;
 }
