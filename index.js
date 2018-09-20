@@ -23,12 +23,12 @@ app.use(bodyParse.json());
 new createRecipeRoutes(app);
 new findRecipeRoutes(app);
 
-app.get('/', (req, res) => {
-    res.render('index', {
-        content: 'Hello express from <em>EJS</em>'
-    });
-})
-//app.use(express.static('public')); 
+//app.get('/', (req, res) => {
+//    res.render('index', {
+//        content: 'Hello express from <em>EJS</em>'
+//    });
+//})
+app.use(express.static('public')); 
 
 app.listen(PORT, () => {
     console.log(`Your server is running on port ${PORT}`);
