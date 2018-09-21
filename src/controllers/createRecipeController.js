@@ -8,14 +8,15 @@ export class AddNewRecipe {
 
     static newRecipe(req, res) {
         console.log(req.body);
+        //let newRecipe = new Recipe(req.body);
         let newRecipe = new Recipe(
             {recipeName: req.body.recipeName},
             {image: undefined},
             {$push: {
-                ingredients: {
-                amount: req.body.amount,
-                unit: req.body.unit,
-                ingredient: req.body.ingredient}}},
+                ingredients: [
+                {amount: req.body.amount},
+                {unit: req.body.unit},
+                {ingredient: req.body.ingredient}]}},
             {desciption: req.body.desciption},
             {category: req.body.category},
             {author: 'Max'});
