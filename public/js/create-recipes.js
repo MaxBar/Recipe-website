@@ -38,3 +38,10 @@ $(document).on('click', '.add', function () {
     $(this).parent().remove();
     $(this).remove();
 });
+
+/*$(document).on('click', '.submit-form', (e) => {
+    e.preventDefault();
+    console.log($('.recipe-form').serializeJSON());
+    let data = $('.recipe-form').serializeObject();
+    $.post("http://localhost:3000/create-recipe", data);
+})*/

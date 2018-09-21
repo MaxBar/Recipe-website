@@ -2,13 +2,24 @@ import mongoose from 'mongoose';
 import { RecipeSchema } from '../models/recipeModel';
 
 const Recipe = mongoose.model('Recipe', RecipeSchema);
-
 export class AddNewRecipe {
     constructor() {
     }
 
     static newRecipe(req, res) {
-        let newRecipe = new Recipe(req.body);
+        console.log(req.body);
+        let newRecipe = new Recipe(
+            {recipeName: req.body.recipeName},
+            {image: undefined},
+            {$push: {
+                ingredients: {
+                amount: req.body.amount,
+                unit: req.body.unit,
+                ingredient: req.body.ingredient}}},
+            {desciption: req.body.desciption},
+            {category: req.body.category},
+            {author: 'Max'});
+        console.log(newRecipe);
 
         newRecipe.save((err, recipe) => {
             if(err) {

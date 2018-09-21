@@ -17,8 +17,8 @@ mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://' + process.env.MONGO_USER + ':' + process.env.MONGO_PASS + process.env.MONGO_HOST + '/' + process.env.MONGO_DATABASE);
 
 // bodyparser setup
-app.use(bodyParse.urlencoded({ extended: true}));
 app.use(bodyParse.json());
+app.use(bodyParse.urlencoded({ extended: true}));
 
 new createRecipeRoutes(app);
 new findRecipeRoutes(app);

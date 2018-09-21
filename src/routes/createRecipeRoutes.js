@@ -23,12 +23,13 @@ module.exports = class createRecipeRoutes {
 
     setPostRoutes() {
         this.app.post('/create-recipe', (req, res) => AddNewRecipe.newRecipe(req, res));
+        console.log("hej");
         // TODO Login post
         // TODO Create account post
     }
 
     setPutRoutes() {
-        this.app.put('/create-recipe/:recipeId', (rea, res) => {
+        this.app.put('/create-recipe/:recipeId', (req, res) => {
             res.send('PUT request successful');
             // TODO change credentials put
             // TODO change recipe put
@@ -36,7 +37,7 @@ module.exports = class createRecipeRoutes {
     }
 
     setDeleteRoutes() {
-        this.app.delete('/create-recipe/:recipeId', (rea, res) => {
+        this.app.delete('/create-recipe/:recipeId', (req, res) => {
             res.send('DELETE request successful');
             // TODO delete self
             // TODO delete recipe

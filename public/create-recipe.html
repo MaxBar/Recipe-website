@@ -15,7 +15,7 @@
             <div class="container">
                 <div class="navbar-nav mr-auto">
                     <a class="nav-item nav-link" href="index.html">Hem</a>
-                    <a class="nav-item nav-link ml-auto active" href="create-recipes.html">Skapa Recept</a>
+                    <a class="nav-item nav-link ml-auto active" href="create-recipe.html">Skapa Recept</a>
                 </div>
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" href="#">Konto</a>
@@ -24,15 +24,15 @@
         </nav>
     </div>
 </header>
-<main>
-    <div class="container">
+<main class="ml-4">
+    <div class="container"> 
         <h2 class="mt-2">Skapa ett recept!</h2>
-        <form class="mt-4">
+        <form class="mt-4 recipe-form" method="POST" action="/create-recipe">
             <fieldset>
                 <div class="form-group row">
-                <label class="col-2 col-form-label" form="recipe-name">Receptnamn:</label>
+                <label class="col-2 col-form-label" form="recipeName">Receptnamn:</label>
                 <div class="col-4">
-                    <input class="form-control" type="text" id="recipe-name">
+                    <input class="form-control" type="text" id="recipeName" name="recipeName">
                 </div>
                 </div>
             </fieldset>
@@ -40,37 +40,37 @@
                 <legend>Kategorier</legend>
                 <div class="form-check form-check-inline">
                 <label class="form-check-label" form="meat">
-                <input type="checkbox" class="form-check-input" id="meat">Kött
+                <input type="checkbox" class="form-check-input" id="meat" name="category[]" value="kött">Kött
             </label>
                 </div>
                 <div class="form-check form-check-inline">
                 <label class="form-check-label" form="chicken">
-                <input type="checkbox" class="form-check-input" id="chicken">Kyckling
+                <input type="checkbox" class="form-check-input" id="chicken" name="category[]" value="kyckling">Kyckling
             </label>
             </div>
                 <div class="form-check form-check-inline">
                 <label class="form-check-label" form="fish">
-                <input type="checkbox" class="form-check-input" id="fish">Fisk
+                <input type="checkbox" class="form-check-input" id="fish" name="category[]" value="fisk">Fisk
             </label>
             </div>
                 <div class="form-check form-check-inline">
                 <label class="form-check-label" form="vegetarian">
-                <input type="checkbox" class="form-check-input" id="vegetarian">Vegetarisk
+                <input type="checkbox" class="form-check-input" id="vegetarian" name="category[]" value="vegetarisk">Vegetarisk
             </label>
             </div>
                 <div class="form-check form-check-inline">
                 <label class="form-check-label" form="breakfast">
-                <input type="checkbox" class="form-check-input" id="breakfast">Frukost
+                <input type="checkbox" class="form-check-input" id="breakfast" name="category[]" value="frukost">Frukost
             </label>
             </div>
                 <div class="form-check form-check-inline">
                 <label class="form-check-label" form="lunch">
-                <input type="checkbox" class="form-check-input" id="lunch">Lunch
+                <input type="checkbox" class="form-check-input" id="lunch" name="category[]" value="lunch">Lunch
             </label>
             </div>
                 <div class="form-check form-check-inline">
                 <label class="form-check-label" form="dinner">
-                <input type="checkbox" class="form-check-input" id="dinner">Kvällsmat
+                <input type="checkbox" class="form-check-input" id="dinner" name="category[]" value="kvällsmat">Kvällsmat
             </label>
             </div>
             </fieldset>
@@ -83,13 +83,13 @@
                 </div>
                 <div class="form-group form-row">
                     <div class="form-group col-1">
-                        <input type="text" class="form-control">
+                        <input type="number" class="form-control" name="amount">
                     </div>
                     <div class="form-group col-1">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="unit">
                     </div>
                     <div class="form-group col-7">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="ingredient">
                     </div>
                     <div class="col-1">
                         <button type="button" class="close" aria-label="Close">
@@ -99,13 +99,13 @@
                 </div>
                 <div class="form-group form-row">
                         <div class="form-group col-1">
-                            <input type="text" class="form-control">
+                            <input type="number" class="form-control" name="amount">
                         </div>
                         <div class="form-group col-1">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="unit">
                         </div>
                         <div class="form-group col-7">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="ingredient">
                         </div>
                         <div class="col-1">
                             <button type="button" class="close" aria-label="Close">
@@ -115,13 +115,13 @@
                     </div>
                     <div class="form-group form-row last">
                             <div class="form-group col-1">
-                                <input type="text" class="form-control">
+                                <input type="number" class="form-control" name="amount">
                             </div>
                             <div class="form-group col-1">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="unit">
                             </div>
                             <div class="form-group col-7">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="ingredient">
                             </div>
                             <div class="col-1">
                                 <button type="button" class="close" aria-label="Close">
@@ -135,9 +135,9 @@
             </fieldset>
             <fieldset>
                 <legend>Beskrivning</legend>
-                <textarea type="text" class="form-control" rows=20></textarea>
+                <textarea type="text" class="form-control" rows=20 name="description"></textarea>
             </fieldset>
-            <button type="submit" class="btn btn-success mt-3">Skicka</button>
+            <button type="submit" class="btn btn-success mt-3 submit-form">Skicka</button>
         </form>
         </div>
 </main>
@@ -148,6 +148,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="/js/index.js" charset="utf-8"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="/js/jquery.serialize-object.min.js"></script>
     <script src="/js/create-recipes.js" charset="utf-8"></script>
     </div>
 </body>
