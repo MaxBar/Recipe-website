@@ -14,7 +14,9 @@ const PORT = 3000;
 // mongoose connection
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://' + process.env.MONGO_USER + ':' + process.env.MONGO_PASS + process.env.MONGO_HOST + '/' + process.env.MONGO_DATABASE);
+export let dbase;
+
+
 
 // bodyparser setup
 app.use(bodyParse.json());
@@ -30,6 +32,16 @@ new findRecipeRoutes(app);
 //})
 app.use(express.static('public')); 
 
-app.listen(PORT, () => {
-    console.log(`Your server is running on port ${PORT}`);
+mongoose.connect('mongodb://' + process.env.MONGO_USER + ':' + process.env.MONGO_PASS + process.env.MONGO_HOST + '/' + process.env.MONGO_DATABASE, (err, db) => {
+    dbase = db.db;
+    if(err) {
+        return console.log(err);
+    }
+    app.listen(PORT, () => {
+        console.log(`Your server is running on port ${PORT}`);
+    });
 });
+
+// app.listen(PORT, () => {
+//     console.log(`Your server is running on port ${PORT}`);
+// });

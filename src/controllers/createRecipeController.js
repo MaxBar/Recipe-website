@@ -7,26 +7,25 @@ export class AddNewRecipe {
     }
 
     static newRecipe(req, res) {
-        console.log(req.body);
-        //let newRecipe = new Recipe(req.body);
-        let newRecipe = new Recipe(
+        let newRecipe = new Recipe(req.body);
+        /*let newRecipe = new Recipe(
             {recipeName: req.body.recipeName},
             {image: undefined},
             {$push: {
-                ingredients: [
-                {amount: req.body.amount},
-                {unit: req.body.unit},
-                {ingredient: req.body.ingredient}]}},
+                ingredients: [{
+                amount: req.body.amount,
+                unit: req.body.unit,
+                ingredient: req.body.ingredient}]}},
             {desciption: req.body.desciption},
             {category: req.body.category},
-            {author: 'Max'});
-        console.log(newRecipe);
+            {author: 'Max'});*/
 
         newRecipe.save((err, recipe) => {
             if(err) {
-                res.send(err);
+                return res.send(err);
             }
-            res.json(recipe);
+            res.redirect(`/recipes/${newRecipe._id}`);
+            //res.json(recipe);
         });
     } 
 

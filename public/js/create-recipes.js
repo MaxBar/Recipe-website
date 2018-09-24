@@ -1,3 +1,5 @@
+let index = 0;
+
 $(document).on('click', '.close', function() {
     if($(this).parent().parent().hasClass('last')) {
         $(this).parent().parent().prev('div').addClass('last');
@@ -16,13 +18,17 @@ $(document).on('click', '.add', function () {
     $('.last').parent().append(`
     <div class="form-group form-row last">
         <div class="form-group col-1">
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" name="ingredients[${++index}][amount]" required pattern="\\d*">
         </div>
-        <div class="form-group col-1">
-            <input type="text" class="form-control">
+        <div class="form-group col-2">
+            <select class="form-control" name="ingredients[${index}][unit]">
+                <option value="g">g</option>
+                <option value="hg">hg</option>
+                <option value="kg">kg</option>
+            </select>
         </div>
-        <div class="form-group col-7">
-            <input type="text" class="form-control">
+        <div class="form-group col-6">
+            <input type="text" class="form-control" name="ingredients[${index}][ingredient]">
         </div>
         <div class="col-1">
             <button type="button" class="close" aria-label="Close">

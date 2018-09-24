@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { RecipeSchema } from '../models/recipeModel';
+import db from '../../index.js'
 
 const Recipe = mongoose.model('Recipe', RecipeSchema);
 
@@ -17,6 +18,7 @@ export class FindRecipe {
     }
  
     static getSpecificRecipe(req, res) {
+        console.log(req.params.recipeId);
         Recipe.findById(req.params.recipeId, (err, recipe) => {
             if(err) {
                 res.send(err);
