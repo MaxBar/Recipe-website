@@ -1,5 +1,19 @@
 let index = 0;
 
+let ingredientList = new Nutrition();
+let inglist = Nutrition.livsmedelsList();
+console.log(inglist)
+
+$(document).on('keypress.autocomplete', '.ingredient', function() {
+    //if(!$(this).data("autocomplete")) {
+        $(this).autocomplete({
+        source: inglist
+        });
+    //}
+});
+//$('.ui-helper-hidden-accessible').css('display', 'none');
+//test.livsmedelsList;
+
 $(document).on('click', '.close', function() {
     if($(this).parent().parent().hasClass('last')) {
         $(this).parent().parent().prev('div').addClass('last');
@@ -28,7 +42,7 @@ $(document).on('click', '.add', function () {
             </select>
         </div>
         <div class="form-group col-6">
-            <input type="text" class="form-control" name="ingredients[${index}][ingredient]">
+            <input type="text" class="form-control ingredient" name="ingredients[${index}][ingredient]">
         </div>
         <div class="col-1">
             <button type="button" class="close" aria-label="Close">
