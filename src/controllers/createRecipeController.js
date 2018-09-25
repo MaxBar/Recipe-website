@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { RecipeSchema } from '../models/recipeModel';
+import { Nutrition } from '../utility/nutrition.class';
 
 const Recipe = mongoose.model('Recipe', RecipeSchema);
 export class AddNewRecipe {
@@ -8,24 +9,23 @@ export class AddNewRecipe {
 
     static newRecipe(req, res) {
         let newRecipe = new Recipe(req.body);
-        /*let newRecipe = new Recipe(
-            {recipeName: req.body.recipeName},
-            {image: undefined},
-            {$push: {
-                ingredients: [{
-                amount: req.body.amount,
-                unit: req.body.unit,
-                ingredient: req.body.ingredient}]}},
-            {desciption: req.body.desciption},
-            {category: req.body.category},
-            {author: 'Max'});*/
+        let nutrition = new Nutrition();
+        let nutritions = nutrition.calculateNutritions(req.body);
+        console.log(nutritions);
+        newRecipe.nutrients.kcal = nutritions.kcal;
+        newRecipe.nutrients.protein = nutritions.protein;
+        newRecipe.nutrients.kolhydrater = nutritions.kolhydrater
+        console.log(newRecipe.nutrients);
+        //newRecipe.
+        //Nutrition.calculateNutritions(req.body);
+        //console.log(Nutrition);
+        //Nutrition.calculateNutritions(req.body);
 
         newRecipe.save((err, recipe) => {
             if(err) {
                 return res.send(err);
             }
             res.redirect(`/recipes/${newRecipe._id}`);
-            //res.json(recipe);
         });
     } 
 

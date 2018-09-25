@@ -7,7 +7,8 @@ console.log(inglist)
 $(document).on('keypress.autocomplete', '.ingredient', function() {
     //if(!$(this).data("autocomplete")) {
         $(this).autocomplete({
-        source: inglist
+            minLength: 2,
+            source: inglist
         });
     //}
 });
