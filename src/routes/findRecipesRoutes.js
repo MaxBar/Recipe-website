@@ -10,6 +10,7 @@ module.exports = class createRecipeRoutes {
     }
 
     setGetRoutes() {
+        this.app.get('/index', (req, res) => { res.render('index');})
         this.app.get('/recipes', (req, res) => FindRecipe.getRecipes(req, res));
         this.app.get('/recipes/:recipeId', (req, res) => FindRecipe.getSpecificRecipe(req, res));
         this.app.get('/search-recipes/:recipeSearch', (req, res) => FindRecipe.searchRecipes(req, res));

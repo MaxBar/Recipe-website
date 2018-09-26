@@ -70,15 +70,15 @@ export class Nutrition {
                         
                         if(i.Forkortning === 'Ener') {
                             temp = i;
-                            nutrition.kcal += (parseFloat(temp.Varde) * proportions).toFixed(1);
+                            nutrition.kcal += (parseFloat(temp.Varde) * proportions);
                         }
                         if(i.Forkortning === 'Kolh') {
                             temp = i;
-                            nutrition.kolhydrater += (parseFloat(temp.Varde) * proportions).toFixed(1);
+                            nutrition.kolhydrater += (parseFloat(temp.Varde) * proportions);
                         }
                         if(i.Forkortning === 'Prot') {
                             temp = i;
-                            nutrition.protein += (parseFloat(temp.Varde) * proportions).toFixed(1);
+                            nutrition.protein += (parseFloat(temp.Varde) * proportions);
                         }
                     }
                 }

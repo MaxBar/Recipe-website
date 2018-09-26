@@ -12,6 +12,7 @@ module.exports = class createRecipeRoutes {
     setGetRoutes() {
         this.app.get('/create-recipe', (req, res, next) => {
             // midddleware
+            res.render('create-recipe');
             console.log(`Request from: ${req.originalUrl}`);
             console.log(`Request type: ${req.method}`);
             next();
@@ -23,7 +24,6 @@ module.exports = class createRecipeRoutes {
 
     setPostRoutes() {
         this.app.post('/create-recipe', (req, res) => AddNewRecipe.newRecipe(req, res));
-        console.log("hej");
         // TODO Login post
         // TODO Create account post
     }

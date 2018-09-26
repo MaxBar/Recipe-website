@@ -9,7 +9,7 @@ dotenv.load();
 
 const app = express();
 const PORT = 3000;
-//app.set('view engine', 'ejs');
+app.set('view engine', 'ejs');
 
 // mongoose connection
 mongoose.Promise = global.Promise;
@@ -21,15 +21,17 @@ export let dbase;
 // bodyparser setup
 app.use(bodyParse.json());
 app.use(bodyParse.urlencoded({ extended: true}));
+//app.use('view engine', ejs);
+//app.use('views', 'src/views');
 
 new createRecipeRoutes(app);
 new findRecipeRoutes(app);
 
-//app.get('/', (req, res) => {
-//    res.render('index', {
-//        content: 'Hello express from <em>EJS</em>'
-//    });
-//})
+app.get('/', (req, res) => {
+    res.render('index', {
+        content: 'Hello express from <em>EJS</em>'
+    });
+})
 app.use(express.static('public')); 
 
 mongoose.connect('mongodb://' + process.env.MONGO_USER + ':' + process.env.MONGO_PASS + process.env.MONGO_HOST + '/' + process.env.MONGO_DATABASE, (err, db) => {
@@ -41,7 +43,3 @@ mongoose.connect('mongodb://' + process.env.MONGO_USER + ':' + process.env.MONGO
         console.log(`Your server is running on port ${PORT}`);
     });
 });
-
-// app.listen(PORT, () => {
-//     console.log(`Your server is running on port ${PORT}`);
-// });

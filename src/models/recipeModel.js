@@ -8,6 +8,9 @@ export const RecipeSchema  = new Schema({
         required: "Enter a recipe name",
         index: true
     },
+    servings: {
+        type: Number
+    },
     image: { 
         data: Buffer, 
         contentType: String 

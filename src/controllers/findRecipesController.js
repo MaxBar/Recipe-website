@@ -23,7 +23,8 @@ export class FindRecipe {
             if(err) {
                 res.send(err);
             }
-            res.json(recipe);
+            res.render('recipes/recipe', { recipe });
+            //res.json(recipe);
         });
     }
 
