@@ -8,10 +8,9 @@
     <title>Hello EJS</title>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="jumbotron jumbotron-fluid jumdotron-custom mb-0">
-            </div>
+<header>
+    <div class="container">
+        <div class="jumbotron jumbotron-fluid jumdotron-custom mb-0"></div>
         <nav class="navbar navbar-dark navbar-expand-sm navbar-custom sticky-top">
             <div class="container">
                 <div class="navbar-nav mr-auto">
@@ -22,32 +21,24 @@
                     <a class="nav-item nav-link" href="#">Konto</a>
                 </div>
             </div>
-         </nav>
-        </div>
-        <div class="container">
-            <h1> <%= recipe.recipeName %></h1>
-            <p><%= recipe.servings %> </p>
-            <div class="recipe-list">
-                <ul>
-                    <% for(let ingredient of recipe.ingredients) { %>
-                        <li><%= ingredient.amount %> <%= ingredient.unit %> <%= ingredient.ingredient %></li>
-                    <% } %>
-                </ul>
+        </nav>
+    </div>
+</header>
+<main>
+
+</main>
+<aside class="container">
+        <% for(let c of category) { %>
+            <div> <%= c %>
+            <% for(let items of recipe) { %>
+                <% if(items.category.indexOf(c) > -1) { %>
+                    <a href="/recipes/<%= items._id %>"><%= items.recipeName %></a>
+                <% }; %>
+            <% } %>
             </div>
-            <div class="recipe-description">
-                <p>
-                    <%= recipe.description %>
-                </p>
-            </div>
-            <div class="recipe-nutritions">
-                <p>Näringsvärde per 100g</p>
-                <p> energi: <%= recipe.nutrients.kcal %> kcal</p>
-                <p> kolhydrater: <%= recipe.nutrients.kolhydrater %> g</p>
-                <p> protein: <%= recipe.nutrients.protein %> g</p>
-            </div>
-        </div>
-    </header>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <% } %>
+</aside>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="/js/index.js" charset="utf-8"></script>

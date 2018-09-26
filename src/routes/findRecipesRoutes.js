@@ -20,6 +20,7 @@ module.exports = class createRecipeRoutes {
     }
 
     setPostRoutes() {
+        this.app.post('/search-recipes', (req, res) => FindRecipe.searchRecipes(req, res));
         // TODO Login post
         // TODO Create account post
     }

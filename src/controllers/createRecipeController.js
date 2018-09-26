@@ -11,11 +11,11 @@ export class AddNewRecipe {
         let newRecipe = new Recipe(req.body);
         let nutrition = new Nutrition();
         let nutritions = nutrition.calculateNutritions(req.body);
-        console.log(nutritions);
+        //console.log(nutritions);
         newRecipe.nutrients.kcal = nutritions.kcal;
         newRecipe.nutrients.protein = nutritions.protein;
         newRecipe.nutrients.kolhydrater = nutritions.kolhydrater
-        console.log(newRecipe.nutrients);
+        //console.log(newRecipe.nutrients);
         //newRecipe.
         //Nutrition.calculateNutritions(req.body);
         //console.log(Nutrition);

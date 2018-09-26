@@ -39,10 +39,10 @@ export const RecipeSchema  = new Schema({
         protein: Number,
         kolhydrater: Number
     },
-    category: {
+    category: [{
         type: String,
         index: true
-    },
+    }],
     author: {
         type: String,
         index: true

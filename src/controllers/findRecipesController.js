@@ -29,8 +29,10 @@ export class FindRecipe {
     }
 
     static searchRecipes(req, res) {
-        let searchString = new RegExp(req.params.recipeName, 'i');
-        if(req.params.recipeName.length > 1) {
+        console.log("hej");
+        console.log(req.body.search);
+        let searchString = new RegExp(req.body.search, 'i');
+        if(req.body.search.length > 1) {
             Recipe.find({
                 $or: [ 
                 { recipeName: { "$regex": searchString }},
@@ -39,7 +41,21 @@ export class FindRecipe {
                     if(err) {
                         res.send(err);
                     }
-                    res.json(recipe);
+                    console.log(recipe);
+                    let category = [...new Set(recipe.flatMap( c => c.category)) ];
+                    for(let c of category) {
+                        console.log(c);
+                        for(let items of recipe) {
+                            if(items.category.indexOf(c) > -1) {
+                                //console.log(items);
+                                console.log(items.recipeName);
+                                //console.log(c);
+                                //console.log(items.category);
+                            };
+                        }
+                    }
+                    res.render('search-recipe', { recipe, category });
+                    //res.json(recipe);
             });
         }
     }
