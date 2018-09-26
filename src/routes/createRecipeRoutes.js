@@ -12,6 +12,7 @@ module.exports = class createRecipeRoutes {
     setGetRoutes() {
         this.app.get('/create-recipe', (req, res, next) => {
             // midddleware
+            res.render('create-recipe');
             console.log(`Request from: ${req.originalUrl}`);
             console.log(`Request type: ${req.method}`);
             next();
@@ -28,7 +29,7 @@ module.exports = class createRecipeRoutes {
     }
 
     setPutRoutes() {
-        this.app.put('/create-recipe/:recipeId', (rea, res) => {
+        this.app.put('/create-recipe/:recipeId', (req, res) => {
             res.send('PUT request successful');
             // TODO change credentials put
             // TODO change recipe put
@@ -36,7 +37,7 @@ module.exports = class createRecipeRoutes {
     }
 
     setDeleteRoutes() {
-        this.app.delete('/create-recipe/:recipeId', (rea, res) => {
+        this.app.delete('/create-recipe/:recipeId', (req, res) => {
             res.send('DELETE request successful');
             // TODO delete self
             // TODO delete recipe

@@ -8,6 +8,9 @@ export const RecipeSchema  = new Schema({
         required: "Enter a recipe name",
         index: true
     },
+    servings: {
+        type: Number
+    },
     image: { 
         data: Buffer, 
         contentType: String 
@@ -31,11 +34,11 @@ export const RecipeSchema  = new Schema({
         type: String,
         index: true
     },
-    nutrients: [{
-        nutrient: String,
-        value: Number,
-        unit: String
-    }],
+    nutrients: {
+        kcal: Number,
+        protein: Number,
+        kolhydrater: Number
+    },
     category: {
         type: String,
         index: true

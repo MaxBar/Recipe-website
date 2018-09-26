@@ -14,11 +14,15 @@ app.set('view engine', 'ejs');
 // mongoose connection
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://' + process.env.MONGO_USER + ':' + process.env.MONGO_PASS + process.env.MONGO_HOST + '/' + process.env.MONGO_DATABASE);
+export let dbase;
+
+
 
 // bodyparser setup
-app.use(bodyParse.urlencoded({ extended: true}));
 app.use(bodyParse.json());
+app.use(bodyParse.urlencoded({ extended: true}));
+//app.use('view engine', ejs);
+//app.use('views', 'src/views');
 
 new createRecipeRoutes(app);
 new findRecipeRoutes(app);
@@ -28,8 +32,14 @@ app.get('/', (req, res) => {
         content: 'Hello express from <em>EJS</em>'
     });
 })
-//app.use(express.static('public')); 
+app.use(express.static('public')); 
 
-app.listen(PORT, () => {
-    console.log(`Your server is running on port ${PORT}`);
+mongoose.connect('mongodb://' + process.env.MONGO_USER + ':' + process.env.MONGO_PASS + process.env.MONGO_HOST + '/' + process.env.MONGO_DATABASE, (err, db) => {
+    dbase = db.db;
+    if(err) {
+        return console.log(err);
+    }
+    app.listen(PORT, () => {
+        console.log(`Your server is running on port ${PORT}`);
+    });
 });
