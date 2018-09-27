@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 import { RecipeSchema } from '../models/recipeModel';
 import { Nutrition } from '../utility/nutrition.class';
+import path from 'path';
+//import { upload } from '../../index';
 
 const Recipe = mongoose.model('Recipe', RecipeSchema);
 export class AddNewRecipe {
@@ -8,6 +10,21 @@ export class AddNewRecipe {
     }
 
     static newRecipe(req, res) {
+        //const tempPath = req.file.path;
+        const targetPath = path.join(__dirname, "../../public/images");
+        /*if(req.body.file != undefined) {
+            let image = req.body.file;
+            fs.writeFile(targetPath, image, err => {
+                if(err) {
+                    return;
+                }
+                console.log("saved");
+            });
+        }*/
+        console.log(req.files);
+        console.log(req);
+        console.log(targetPath);
+
         let newRecipe = new Recipe(req.body);
         let nutrition = new Nutrition();
         let nutritions = nutrition.calculateNutritions(req.body);

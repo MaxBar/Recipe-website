@@ -84,10 +84,6 @@ export class Nutrition {
                 }
             }
         }
-
-        console.log(nutrition.kcal);
-        console.log(nutrition.protein);
-        console.log(nutrition.kolhydrater);
         return nutrition;
     }
 
@@ -102,7 +98,6 @@ export class Nutrition {
                 totalWeight += parseInt(ingredient.amount, 10) * 1000;
             }
         }
-        console.log(totalWeight)
         return totalWeight;
     }
     
@@ -115,7 +110,6 @@ export class Nutrition {
         } else {
             weight += parseInt(data.amount, 10) * 1000;
         }
-        console.log("ingredient weight = " + weight);
         return weight;
     }
 }

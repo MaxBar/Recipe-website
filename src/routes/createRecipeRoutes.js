@@ -1,4 +1,5 @@
 import { AddNewRecipe } from '../controllers/createRecipeController';
+import { upload } from '../../index';
 
 module.exports = class createRecipeRoutes {
     constructor(app) {
@@ -7,7 +8,21 @@ module.exports = class createRecipeRoutes {
         this.setPostRoutes();
         this.setPutRoutes();
         this.setDeleteRoutes();
+        
     }
+
+    
+
+    /*storage = multer.diskStorage({
+        destination: (req, file, cb) => {
+          cb(null, 'public/images')
+        },
+        filename: (req, file, cb) => {
+          cb(null, file.fieldname + '-' + Date.now())
+        }
+    });
+    upload = multer({storage: storage});*/7
+
 
     setGetRoutes() {
         this.app.get('/create-recipe', (req, res, next) => {
@@ -23,7 +38,7 @@ module.exports = class createRecipeRoutes {
     }
 
     setPostRoutes() {
-        this.app.post('/create-recipe', (req, res) => AddNewRecipe.newRecipe(req, res));
+        this.app.post('/create-recipe', upload.single('file'), (req, res) => AddNewRecipe.newRecipe(req, res));
         // TODO Login post
         // TODO Create account post
     }

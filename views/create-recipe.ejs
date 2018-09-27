@@ -27,7 +27,7 @@
 <main class="ml-4">
     <div class="container"> 
         <h2 class="mt-2">Skapa ett recept!</h2>
-        <form class="mt-4 recipe-form" method="POST" action="/create-recipe">
+        <form class="mt-4 recipe-form" method="POST" action="/create-recipe" enctype="multipart/form-data" >
             <fieldset>
                 <div class="form-group row">
                 <label class="col-2 col-form-label" form="recipeName">Receptnamn:</label>
@@ -121,6 +121,16 @@
             <fieldset>
                 <Legend>Skapare</Legend>
                 <input type="text" class="form-control" name="author">
+            </fieldset>
+            <fieldset>
+                <legend>Bild</legend>
+                <div class="custom-file">
+                    <div class="col-4">
+                            <input id="input-b2" name="file" type="file" class="file" data-show-preview="false">
+                        <!--<input accept="image/png, image/jpeg" type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="image">-->
+                        <!--<label class="custom-file-label" for="input-b2">Välj bild</label>-->
+                    </div>
+                </div>
             </fieldset>
             <button type="submit" class="btn btn-success mt-3 submit-form">Skicka</button>
         </form>
