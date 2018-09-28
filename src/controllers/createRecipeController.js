@@ -32,6 +32,7 @@ export class AddNewRecipe {
         newRecipe.nutrients.kcal = nutritions.kcal;
         newRecipe.nutrients.protein = nutritions.protein;
         newRecipe.nutrients.kolhydrater = nutritions.kolhydrater
+        newRecipe.image = '/images/' + req.file.filename;
         //console.log(newRecipe.nutrients);
         //newRecipe.
         //Nutrition.calculateNutritions(req.body);

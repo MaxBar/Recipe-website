@@ -12,8 +12,7 @@ export const RecipeSchema  = new Schema({
         type: Number
     },
     image: { 
-        data: Buffer, 
-        contentType: String 
+        type: String
     },
     ingredients: [{
         amount: {
