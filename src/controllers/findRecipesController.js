@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 import { RecipeSchema } from '../models/recipeModel';
-import db from '../../index.js'
 
 const Recipe = mongoose.model('Recipe', RecipeSchema);
 
@@ -24,7 +23,6 @@ export class FindRecipe {
                 res.send(err);
             }
             res.render('recipes/recipe', { recipe });
-            //res.json(recipe);
         });
     }
 
@@ -41,21 +39,8 @@ export class FindRecipe {
                     if(err) {
                         res.send(err);
                     }
-                    console.log(recipe);
                     let category = [...new Set(recipe.flatMap( c => c.category)) ];
-                    for(let c of category) {
-                        console.log(c);
-                        for(let items of recipe) {
-                            if(items.category.indexOf(c) > -1) {
-                                //console.log(items);
-                                console.log(items.recipeName);
-                                //console.log(c);
-                                //console.log(items.category);
-                            };
-                        }
-                    }
                     res.render('search-recipe', { recipe, category });
-                    //res.json(recipe);
             });
         }
     }
@@ -78,21 +63,4 @@ export class FindRecipe {
             res.json({ message: 'Successfully deleted recipe'});
         });
     }
-
-    /* static searchRecipes(req, res) {
-        console.log(req.params);
-        let searchString = req.params.recipeName;
-        console.log(searchString);
-
-        if(searchString.length > 1) {
-            Recipe.find({$text: {$search: searchString}}, (err, recipe) => {
-                if(err) {
-                    res.send(err);
-                }
-                res.json(recipe);
-            });
-        } else {
-            res.send("need more information");
-        }
-    } */
 }

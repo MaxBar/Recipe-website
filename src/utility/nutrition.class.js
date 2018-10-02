@@ -7,14 +7,6 @@ export class Nutrition {
         this.kolhydrater = 0;
     }
 
-    /*get livsmedel() {
-        return this.livsmedel;
-    }
-
-    set livsmedel(data) {
-        this.livsmedel = JSON.parse(fs.readFileSync(__dirname + '/../data/livsmedelsdata.json', 'utf8'));
-    }*/
-
     static livsmedelsListNames() {
         let list = [];
         let result = [];

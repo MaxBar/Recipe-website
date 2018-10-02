@@ -11,27 +11,8 @@ module.exports = class createRecipeRoutes {
         
     }
 
-    
-
-    /*storage = multer.diskStorage({
-        destination: (req, file, cb) => {
-          cb(null, 'public/images')
-        },
-        filename: (req, file, cb) => {
-          cb(null, file.fieldname + '-' + Date.now())
-        }
-    });
-    upload = multer({storage: storage});*/7
-
-
     setGetRoutes() {
-        this.app.get('/create-recipe', (req, res, next) => {
-            // midddleware
-            res.render('create-recipe');
-            console.log(`Request from: ${req.originalUrl}`);
-            console.log(`Request type: ${req.method}`);
-            next();
-        })
+        this.app.get('/create-recipe', (req, res, next) => { res.render('create-recipe'); } )
         // TODO get recipes
         // TODO search recipes
         // TODO get credentials for account page
