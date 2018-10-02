@@ -88,6 +88,12 @@ export class Nutrition {
                     nutrition.protein += (parseFloat(tempNutrients[i][j].Varde) * proportions);
                     console.log("Total Protein: " + nutrition.protein);
                 }
+
+                if(j == tempNutrients[i].length - 1) {
+                    nutrition.kcal = nutrition.kcal >> 0;
+                    nutrition.kolhydrater = nutrition.kolhydrater >> 0;
+                    nutrition.protein = nutrition.protein >> 0;
+                }
             }
         }
         return nutrition;
