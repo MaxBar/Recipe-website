@@ -7,14 +7,6 @@ export class Nutrition {
         this.kolhydrater = 0;
     }
 
-    /*get livsmedel() {
-        return this.livsmedel;
-    }
-
-    set livsmedel(data) {
-        this.livsmedel = JSON.parse(fs.readFileSync(__dirname + '/../data/livsmedelsdata.json', 'utf8'));
-    }*/
-
     static livsmedelsListNames() {
         let list = [];
         let result = [];
@@ -54,40 +46,48 @@ export class Nutrition {
         let tempIngredients = [];
         let totalWeight = nutrition.calculateTotalWeight(ingredients);
         let livs = Livsmedel.livsmedel();
-        //console.log(livs);
 
         for(let ingredient of ingredients.ingredients) {
             tempIngredients.push(livs.filter(item => item.Namn === ingredient.ingredient));
         }
-        //console.log(tempIngredients[0][0].Naringsvarden);
-        for(let naring of tempIngredients) {
-            for(let n of naring) {
-                for(let i of n.Naringsvarden.Naringsvarde) {
-                    for(let ingredient of ingredients.ingredients) {
-                        let temp;
-                        let ingredientWeight = nutrition.calculateIngredientsWeight(ingredient);
-                        let proportions = ingredientWeight / totalWeight;
-                        
-                        if(i.Forkortning === 'Ener') {
-                            temp = i;
-                            nutrition.kcal += (parseFloat(temp.Varde) * proportions);
-                        }
-                        if(i.Forkortning === 'Kolh') {
-                            temp = i;
-                            nutrition.kolhydrater += (parseFloat(temp.Varde) * proportions);
-                        }
-                        if(i.Forkortning === 'Prot') {
-                            temp = i;
-                            nutrition.protein += (parseFloat(temp.Varde) * proportions);
-                        }
-                    }
+
+        let tempNutrients = [];
+        for(let ingredient of tempIngredients) {
+            tempNutrients.push(ingredient
+                .flatMap( n => n.Naringsvarden.Naringsvarde
+                .filter( i => i.Forkortning === 'Ener' || i.Forkortning === 'Kolh' || i.Forkortning === 'Prot')));
+        }
+
+        for(let i = 0; i < ingredients.ingredients.length; ++i) {
+            let ingredientWeight = nutrition.calculateIngredientsWeight(ingredients.ingredients[i]);
+            let proportions = ingredientWeight / totalWeight;
+            for(let j = 0; j < tempNutrients[i].length; ++j) {
+                console.log("Totalvikt: " + totalWeight);
+                console.log("Ingredientvikt: " + ingredientWeight);
+                console.log("Proportionern: " + proportions);
+                if(tempNutrients[i][j].Forkortning === 'Ener') {
+                    console.log("Ingredientens kalorier: " + tempNutrients[i][j].Varde);
+                    nutrition.kcal += (parseFloat(tempNutrients[i][j].Varde) * proportions);
+                    console.log("Total Kalorier: " + nutrition.kcal);
+                }
+                if(tempNutrients[i][j].Forkortning === 'Kolh') {
+                    console.log("Ingredientens kolhydrater: " + tempNutrients[i][j].Varde);
+                    nutrition.kolhydrater += (parseFloat(tempNutrients[i][j].Varde) * proportions);
+                    console.log("Total Kolhydrater: " + nutrition.kolhydrater);
+                }
+                if(tempNutrients[i][j].Forkortning === 'Prot') {
+                    console.log("Ingredientens proteiner: " + tempNutrients[i][j].Varde);
+                    nutrition.protein += (parseFloat(tempNutrients[i][j].Varde) * proportions);
+                    console.log("Total Protein: " + nutrition.protein);
+                }
+
+                if(j == tempNutrients[i].length - 1) {
+                    nutrition.kcal = nutrition.kcal >> 0;
+                    nutrition.kolhydrater = nutrition.kolhydrater >> 0;
+                    nutrition.protein = nutrition.protein >> 0;
                 }
             }
         }
-
-        console.log(nutrition.kcal);
-        console.log(nutrition.protein);
-        console.log(nutrition.kolhydrater);
         return nutrition;
     }
 
@@ -102,7 +102,6 @@ export class Nutrition {
                 totalWeight += parseInt(ingredient.amount, 10) * 1000;
             }
         }
-        console.log(totalWeight)
         return totalWeight;
     }
     
@@ -115,7 +114,6 @@ export class Nutrition {
         } else {
             weight += parseInt(data.amount, 10) * 1000;
         }
-        console.log("ingredient weight = " + weight);
         return weight;
     }
 }

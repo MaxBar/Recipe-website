@@ -2,18 +2,14 @@ let index = 0;
 
 let ingredientList = new Nutrition();
 let inglist = Nutrition.livsmedelsList();
-console.log(inglist)
 
 $(document).on('keypress.autocomplete', '.ingredient', function() {
-    //if(!$(this).data("autocomplete")) {
         $(this).autocomplete({
             minLength: 2,
             source: inglist
         });
     //}
 });
-//$('.ui-helper-hidden-accessible').css('display', 'none');
-//test.livsmedelsList;
 
 $(document).on('click', '.close', function() {
     if($(this).parent().parent().hasClass('last')) {
@@ -59,10 +55,3 @@ $(document).on('click', '.add', function () {
     $(this).parent().remove();
     $(this).remove();
 });
-
-/*$(document).on('click', '.submit-form', (e) => {
-    e.preventDefault();
-    console.log($('.recipe-form').serializeJSON());
-    let data = $('.recipe-form').serializeObject();
-    $.post("http://localhost:3000/create-recipe", data);
-})*/

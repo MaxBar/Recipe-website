@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 import { RecipeSchema } from '../models/recipeModel';
-import db from '../../index.js'
 
 const Recipe = mongoose.model('Recipe', RecipeSchema);
 
@@ -24,13 +23,14 @@ export class FindRecipe {
                 res.send(err);
             }
             res.render('recipes/recipe', { recipe });
-            //res.json(recipe);
         });
     }
 
     static searchRecipes(req, res) {
-        let searchString = new RegExp(req.params.recipeName, 'i');
-        if(req.params.recipeName.length > 1) {
+        console.log("hej");
+        console.log(req.body.search);
+        let searchString = new RegExp(req.body.search, 'i');
+        if(req.body.search.length > 1) {
             Recipe.find({
                 $or: [ 
                 { recipeName: { "$regex": searchString }},
@@ -39,7 +39,8 @@ export class FindRecipe {
                     if(err) {
                         res.send(err);
                     }
-                    res.json(recipe);
+                    let category = [...new Set(recipe.flatMap( c => c.category)) ];
+                    res.render('search-recipe', { recipe, category });
             });
         }
     }
@@ -62,21 +63,4 @@ export class FindRecipe {
             res.json({ message: 'Successfully deleted recipe'});
         });
     }
-
-    /* static searchRecipes(req, res) {
-        console.log(req.params);
-        let searchString = req.params.recipeName;
-        console.log(searchString);
-
-        if(searchString.length > 1) {
-            Recipe.find({$text: {$search: searchString}}, (err, recipe) => {
-                if(err) {
-                    res.send(err);
-                }
-                res.json(recipe);
-            });
-        } else {
-            res.send("need more information");
-        }
-    } */
 }

@@ -23,14 +23,6 @@ class Nutrition {
             result.push(item.Namn);
         }
         return result;
-        //for(let item of result) {
-            //list.push(item._name);
-            //console.log(list);
-            //return list;
-                //return extractNames(response);
-                //console.log(response);
-                //return response;
-            //}
     }
 
     extractNames(response) {

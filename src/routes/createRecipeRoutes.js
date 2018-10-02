@@ -1,4 +1,5 @@
 import { AddNewRecipe } from '../controllers/createRecipeController';
+import { upload } from '../../index';
 
 module.exports = class createRecipeRoutes {
     constructor(app) {
@@ -7,23 +8,18 @@ module.exports = class createRecipeRoutes {
         this.setPostRoutes();
         this.setPutRoutes();
         this.setDeleteRoutes();
+        
     }
 
     setGetRoutes() {
-        this.app.get('/create-recipe', (req, res, next) => {
-            // midddleware
-            res.render('create-recipe');
-            console.log(`Request from: ${req.originalUrl}`);
-            console.log(`Request type: ${req.method}`);
-            next();
-        })
+        this.app.get('/create-recipe', (req, res, next) => { res.render('create-recipe'); } )
         // TODO get recipes
         // TODO search recipes
         // TODO get credentials for account page
     }
 
     setPostRoutes() {
-        this.app.post('/create-recipe', (req, res) => AddNewRecipe.newRecipe(req, res));
+        this.app.post('/create-recipe', upload.single('file'), (req, res) => AddNewRecipe.newRecipe(req, res));
         // TODO Login post
         // TODO Create account post
     }

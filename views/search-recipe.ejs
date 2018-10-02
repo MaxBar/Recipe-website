@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Hello EJS</title>
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="jumbotron jumbotron-fluid jumdotron-custom mb-0"></div>
+        <nav class="navbar navbar-dark navbar-expand-sm navbar-custom sticky-top">
+            <div class="container">
+                <div class="navbar-nav mr-auto">
+                    <a class="nav-item nav-link" href="/index">Hem</a>
+                    <a class="nav-item nav-link ml-auto" href="/create-recipe">Skapa Recept</a>
+                </div>
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="#">Konto</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+<main class="container d-flex flex-column align-items-center mt-4">
+    <% for(let c of category) { %>
+        <div class="category text-center text-light mt-1"> <%= c %>
+        <% for(let items of recipe) { %>
+            <% if(items.category.indexOf(c) > -1) { %>
+                <div class="recipe mt-4">
+                    <a class="recipe-link" href="/recipes/<%= items._id %>"><%= items.recipeName %></a>
+                </div>
+            <% }; %>
+        <% } %>
+        </div>
+    <% } %>
+</main>
+<script src="https://code.jquery.com/jquery-3.3.1.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="/js/index.js" charset="utf-8"></script>
+    <script src="/js/search-recipe.js" charset="utf-8"></script>
+    </div>
+</body>
+</html>

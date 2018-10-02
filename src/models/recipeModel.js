@@ -12,8 +12,7 @@ export const RecipeSchema  = new Schema({
         type: Number
     },
     image: { 
-        data: Buffer, 
-        contentType: String 
+        type: String
     },
     ingredients: [{
         amount: {
@@ -39,10 +38,10 @@ export const RecipeSchema  = new Schema({
         protein: Number,
         kolhydrater: Number
     },
-    category: {
+    category: [{
         type: String,
         index: true
-    },
+    }],
     author: {
         type: String,
         index: true
