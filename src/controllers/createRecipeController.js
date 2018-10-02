@@ -21,9 +21,9 @@ export class AddNewRecipe {
                 console.log("saved");
             });
         }*/
-        console.log(req.files);
-        console.log(req);
-        console.log(targetPath);
+        //console.log(req.files);
+        //console.log(req);
+        //console.log(targetPath);
 
         let newRecipe = new Recipe(req.body);
         let nutrition = new Nutrition();
