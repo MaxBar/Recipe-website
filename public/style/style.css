@@ -1,0 +1,39 @@
+body {
+    background-color: bisque !important;
+}
+.jumdotron-custom
+{
+    background: url('/images/banner.jpg') 
+    no-repeat !important;
+    height: 400px;
+}
+.navbar-custom {
+    background-color: rgb(252, 25, 25);
+}
+.ui-helper-hidden-accessible{
+    display:none !important;
+}
+.custom-image {
+    width: 50%;
+}
+.background-recipe {
+    background-color: rgb(252, 236, 216);
+}
+.background-recipe-nutrients {
+    background-color: rgb(250, 250, 250);
+    border: 1px solid black;
+}
+.recipe {
+    display: none;
+}
+.category {
+    width: 200px;
+    background-color: rgb(245, 150, 150);
+    border: 1px solid white;
+}
+.recipe-link {
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    background-color: white;
+}
