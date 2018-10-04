@@ -5,6 +5,10 @@ export class Nutrition {
         this.kcal = 0;
         this.protein = 0;
         this.kolhydrater = 0;
+        this.mattat = 0;
+        this.omattat = 0;
+        this.fleromattat = 0;
+        this.salt = 0;
     }
 
     static livsmedelsListNames() {
@@ -55,39 +59,53 @@ export class Nutrition {
         for(let ingredient of tempIngredients) {
             tempNutrients.push(ingredient
                 .flatMap( n => n.Naringsvarden.Naringsvarde
-                .filter( i => i.Forkortning === 'Ener' || i.Forkortning === 'Kolh' || i.Forkortning === 'Prot')));
+                .filter( i => i.Forkortning === 'Ener' || 
+                i.Forkortning === 'Kolh' || 
+                i.Forkortning === 'Prot' || 
+                i.Forkortning === 'Mfet' || 
+                i.Forkortning === 'Mone' || 
+                i.Forkortning === 'Pole' || 
+                i.Forkortning === 'NaCl')));
         }
 
         for(let i = 0; i < ingredients.ingredients.length; ++i) {
             let ingredientWeight = nutrition.calculateIngredientsWeight(ingredients.ingredients[i]);
             let proportions = ingredientWeight / totalWeight;
             for(let j = 0; j < tempNutrients[i].length; ++j) {
-                console.log("Totalvikt: " + totalWeight);
-                console.log("Ingredientvikt: " + ingredientWeight);
-                console.log("Proportionern: " + proportions);
                 if(tempNutrients[i][j].Forkortning === 'Ener') {
-                    console.log("Ingredientens kalorier: " + tempNutrients[i][j].Varde);
                     nutrition.kcal += (parseFloat(tempNutrients[i][j].Varde) * proportions);
-                    console.log("Total Kalorier: " + nutrition.kcal);
                 }
                 if(tempNutrients[i][j].Forkortning === 'Kolh') {
-                    console.log("Ingredientens kolhydrater: " + tempNutrients[i][j].Varde);
                     nutrition.kolhydrater += (parseFloat(tempNutrients[i][j].Varde) * proportions);
-                    console.log("Total Kolhydrater: " + nutrition.kolhydrater);
                 }
                 if(tempNutrients[i][j].Forkortning === 'Prot') {
-                    console.log("Ingredientens proteiner: " + tempNutrients[i][j].Varde);
                     nutrition.protein += (parseFloat(tempNutrients[i][j].Varde) * proportions);
-                    console.log("Total Protein: " + nutrition.protein);
+                }
+                if(tempNutrients[i][j].Forkortning === 'Mfet') {
+                    nutrition.mattat += (parseFloat(tempNutrients[i][j].Varde) * proportions);
+                }
+                if(tempNutrients[i][j].Forkortning === 'Mone') {
+                    nutrition.omattat += (parseFloat(tempNutrients[i][j].Varde) * proportions);
+                }
+                if(tempNutrients[i][j].Forkortning === 'Pole') {
+                    nutrition.fleromattat += (parseFloat(tempNutrients[i][j].Varde) * proportions);
+                }
+                if(tempNutrients[i][j].Forkortning === 'NaCl') {
+                    nutrition.salt += (parseFloat(tempNutrients[i][j].Varde) * proportions);
                 }
 
                 if(j == tempNutrients[i].length - 1) {
-                    nutrition.kcal = nutrition.kcal >> 0;
-                    nutrition.kolhydrater = nutrition.kolhydrater >> 0;
-                    nutrition.protein = nutrition.protein >> 0;
                 }
             }
         }
+        nutrition.kcal = nutrition.kcal.toFixed(2);
+        nutrition.kolhydrater = nutrition.kolhydrater.toFixed(2);
+        nutrition.protein = nutrition.protein.toFixed(2);
+        nutrition.mattat = nutrition.mattat.toFixed(2);
+        nutrition.omattat = nutrition.omattat.toFixed(2);
+        nutrition.fleromattat = nutrition.fleromattat.toFixed(2);
+        nutrition.salt = nutrition.salt.toFixed(2);
+        
         return nutrition;
     }
 

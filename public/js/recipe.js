@@ -24,7 +24,7 @@ $('.servings').on("keyup change", e => {
 function changeAmount(servings) {
     $('.amount').each(function(amount) {
         for(let i = 0; i < originalAmount.length; ++i) {
-            let number = servings * amountPerServing[i];
+            let number = (servings * amountPerServing[i]).toFixed(2);
             spanAmount[i].innerHTML = number.toString();
         }
     });
