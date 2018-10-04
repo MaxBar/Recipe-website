@@ -14,7 +14,11 @@ export class AddNewRecipe {
 
         newRecipe.nutrients.kcal = nutritions.kcal;
         newRecipe.nutrients.protein = nutritions.protein;
-        newRecipe.nutrients.kolhydrater = nutritions.kolhydrater
+        newRecipe.nutrients.kolhydrater = nutritions.kolhydrater;
+        newRecipe.nutrients.mattat = nutritions.mattat;
+        newRecipe.nutrients.omattat = nutritions.omattat;
+        newRecipe.nutrients.fleromattat = nutritions.fleromattat;
+        newRecipe.nutrients.salt = nutritions.salt;
         newRecipe.image = '/images/' + req.file.filename;
 
         newRecipe.save((err, recipe) => {
@@ -28,7 +32,7 @@ export class AddNewRecipe {
     static getRecipes(req, res) {
         Recipe.find({}, (err, recipe) => {
             if(err) {
-                res.send(err);
+                return res.send(err);
             }
             res.json(recipe);
         });
@@ -37,7 +41,7 @@ export class AddNewRecipe {
     static getSpecificRecipe(req, res) {
         Recipe.findById(req.params.recipeId, (err, recipe) => {
             if(err) {
-                res.send(err);
+                return res.send(err);
             }
             res.json(recipe);
         });

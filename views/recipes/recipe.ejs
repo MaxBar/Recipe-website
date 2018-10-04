@@ -37,7 +37,7 @@
             <div class="recipe-list">
                 <ul>
                     <% for(let ingredient of recipe.ingredients) { %>
-                        <li><span class="amount"><%= ingredient.amount %></span><%= ingredient.unit %> <%= ingredient.ingredient %></li>
+                        <li><span class="amount"><%= ingredient.amount %> </span><%= ingredient.unit %> <%= ingredient.ingredient %></li>
                     <% } %>
                 </ul>
             </div>
@@ -46,6 +46,10 @@
                 <p> energi: <%= recipe.nutrients.kcal %> kcal</p>
                 <p> kolhydrater: <%= recipe.nutrients.kolhydrater %> g</p>
                 <p> protein: <%= recipe.nutrients.protein %> g</p>
+                <p> Mättat fett: <%= recipe.nutrients.mattat %> g</p>
+                <p> Omattat fett: <%= recipe.nutrients.omattat %> g</p>
+                <p> Fleromättat fett: <%= recipe.nutrients.fleromattat %> g</p>
+                <p> Salt: <%= recipe.nutrients.salt %> g</p>
             </div>
         </div>
         <div class="col-8">
