@@ -17,7 +17,6 @@ export class FindRecipe {
     }
  
     static getSpecificRecipe(req, res) {
-        console.log(req.params.recipeId);
         Recipe.findById(req.params.recipeId, (err, recipe) => {
             if(err) {
                 return res.send(err);
@@ -27,8 +26,6 @@ export class FindRecipe {
     }
 
     static searchRecipes(req, res) {
-        console.log("hej");
-        console.log(req.body.search);
         let searchString = new RegExp(req.body.search, 'i');
         if(req.body.search.length > 1) {
             Recipe.find({
