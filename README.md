@@ -1,3 +1,6 @@
 Recipe-website
 
-Empty master, working from develop and other branches.
+To run the website:
+npm start
+
+An .env file with authentications is also required, see dotenv-extended for details.
