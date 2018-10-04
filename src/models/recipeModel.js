@@ -36,7 +36,11 @@ export const RecipeSchema  = new Schema({
     nutrients: {
         kcal: Number,
         protein: Number,
-        kolhydrater: Number
+        kolhydrater: Number,
+        mattat: Number,
+        omattat: Number,
+        fleromattat: Number,
+        salt: Number
     },
     category: [{
         type: String,
@@ -53,5 +57,5 @@ export const RecipeSchema  = new Schema({
 })
 
 RecipeSchema.index({recipeName: "text", description: "text", ingredient: "text"});
-RecipeSchema.index({category: "test"});
+RecipeSchema.index({category: "text"});
 RecipeSchema.index({author: "text"});
