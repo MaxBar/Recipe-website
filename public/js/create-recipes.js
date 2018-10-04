@@ -11,7 +11,7 @@ $(document).on('keypress.autocomplete', '.ingredient', function() {
     //}
 });
 
-$(document).on('click', '.close', function() {
+/*$(document).on('click', '.close', function() {
     if($(this).parent().parent().hasClass('last')) {
         $(this).parent().parent().prev('div').addClass('last');
         $(this).parent().parent().prev('div').append(`
@@ -23,7 +23,7 @@ $(document).on('click', '.close', function() {
     } else {
         $(this).parent().parent('div').first().remove();
     }
-});
+});*/
 
 $(document).on('click', '.add', function () { 
     $('.last').parent().append(`
@@ -40,11 +40,6 @@ $(document).on('click', '.add', function () {
         </div>
         <div class="form-group col-6">
             <input type="text" class="form-control ingredient" name="ingredients[${index}][ingredient]">
-        </div>
-        <div class="col-1">
-            <button type="button" class="close" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
         </div>
         <div class="col-1">
             <button type="button" class="add btn btn-primary ml-4" aria-label="Add">Ny</button>
